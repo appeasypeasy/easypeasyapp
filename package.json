@@ -1,30 +1,36 @@
 {
-  "name": "easypeasyapp",
-  "version": "1.0.0",
-  "private": false,
-  "workspaces": [
-    "backEnd",
-    "frontEnd"
-  ],
+  "name": "easy-peasy-app-backend",
+  "version": "0.0.0",
+  "private": true,
   "engines": {
     "node": ">=16.17.0",
     "npm": ">=8.0.0"
   },
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "build": "npm install",
+    "dev": "nodemon node app.js",
+    "start": "node app.js",
+    "prepare": "husky install",
     "test": "jest --forceExit",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "format": "npx prettier --write .",
-    "prepare": "husky install",
-    "dev:api": "npm run dev --workspaces=backEnd"
+    "format": "npx prettier --write ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "@sendgrid/mail": "^7.7.0",
+    "cookie-parser": "1.4.4",
+    "debug": "2.6.9",
+    "dotenv": "16.0.2",
+    "express": "4.16.1",
+    "http-errors": "1.6.3",
+    "morgan": "1.9.1",
+    "pg": "8.8.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "nodemon": "2.0.20",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard": "17.0.0",
@@ -39,20 +45,5 @@
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "supertest": "6.2.4"
-  },
-  "lint-staged": {
-    "*.(js, .test.js)": "npm run lint-fix, npm run format npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/No-Country/c7-09-pern-easy-peasy-app.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/No-Country/c7-09-pern-easy-peasy-app/issues"
-  },
-  "homepage": "https://github.com/No-Country/c7-09-pern-easy-peasy-app#readme"
-  
+  }
 }
