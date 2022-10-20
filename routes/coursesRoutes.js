@@ -12,7 +12,7 @@ const {
 router.post('/courses', create)
 router.get('/courses', showAll)
 router.put('/courses/:id', update)
-router.put('/courses:id', updateImage)
+router.put('/courses/image/:id', updateImage)
 router.delete('/courses/:id', destroy)
 router.get('/courses/:id', showById)
 
