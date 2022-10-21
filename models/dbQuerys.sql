@@ -12,15 +12,36 @@ CREATE DATABASE easypeasy;
   updatedate TIMESTAMP NOT NULL
 );
 
-CREATE TABLE user_course (
+CREATE TABLE client_course (
   id SERIAL PRIMARY KEY,
   client_id INT NOT NULL,
   course_id INT NOT NULL,
-  createdate TIMESTAMP NOT NULL,
-  updatedate TIMESTAMP NOT NULL,
+  createdate TIMESTAMP NOT NULL DEFAULT 'now()',
+  updatedate TIMESTAMP NOT NULL DEFAULT 'now()',
   FOREIGN KEY (client_id) REFERENCES client(id),
   FOREIGN KEY (course_id) REFERENCES course(id)
 );
+
+SELECT
+  client.id,
+  client.firstname,
+  client.lastname,
+  client.email,
+  client.image_url,
+  client.createdate,
+  client.updatedate,
+  course.id,
+  course.title,
+  course.description,
+  course.image_url,
+  course.createdate,
+  course.updatedate
+FROM
+  client_course AS cc
+  INNER JOIN  client ON cc.client_id = client.id
+  INNER JOIN course ON cc.course_id = course.id
+WHERE client.id = 5;
+
 
 CREATE TABLE course (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -251,8 +272,7 @@ CREATE TABLE course (
   'Secuencias de comandos de Lua
     Integrar Lua con C y C++',
   15
-),
-(
+),(
   'Mongo',
   '¡MongoDB para aplicaciones web y móviles. Operaciones CRUD, índices, marco de agregación: ¡Todo sobre MongoDB!',
   60,
@@ -284,8 +304,7 @@ CREATE TABLE course (
   'Ser capaz de usar Python para la ciencia de datos y el aprendizaje automático
     Aprenderá automatización, desarrollo de juegos, aplicaciones y web, ciencia de datos y aprendizaje automático, todo usando Python.',
   26
-),
-(
+),(
   'Ruby',
   '¡Una introducción completa a la codificación con el lenguaje de programación Ruby!',
   65,
@@ -307,8 +326,7 @@ CREATE TABLE course (
   'El conocimiento profundo del diseño de bases de datos les dará a los estudiantes una ventaja sobre otros solicitantes.
     Los conocimientos adquiridos de SQL y MySQL permiten a los estudiantes solicitar puestos de trabajo en el sector de TI.',
   14
-),
-(
+),(
   'TypeScript',
   '¡Impulse sus proyectos de JavaScript con TypeScript!',
   75,
